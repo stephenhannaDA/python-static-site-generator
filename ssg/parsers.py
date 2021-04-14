@@ -3,23 +3,23 @@ from pathlib import Path
 import shutil
 
 class Parser:
-	self.extensions = []
+	extensions: List[str] = []
 
 	def valid_extension(self, extension):
 		return extension in self.extensions
 
-	def parse(path, source, dest):
+	def parse(self, path, source, dest):
 		raise NotImplementedError
 
-	def read(path):
+	def read(self, path):
 		with open(path, 'r') as file:
 			return read(file)
-	def write(path, dest, content, ext=".html"):
+	def write(self, path, dest, content, ext=".html"):
 		full_path = self.dest / path.with_suffix(ext).name
 		with open(full_path, "w") as file:
 			write(content, file)
 
-	def copy(path, source, dest):
+	def copy(self, path, source, dest):
 		shutil.copy2(path, dest/path.relative_to(self.source))
 
 class ResourceParser(Parser):
