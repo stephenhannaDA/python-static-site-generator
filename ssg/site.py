@@ -16,6 +16,7 @@ class Site:
         for path in self.source.rglob("*"):
             if path.is_dir():
                 self.create_dir(path)
+                
             elif path.isfile():
             	self.run_parser(path)
 
