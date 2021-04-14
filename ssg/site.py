@@ -24,7 +24,7 @@ class Site:
     		if extension.valid_extension():
     			return parser
     def run_parser(self, path):
-    	parser = load_parser(path.suffix)
+    	parser = self.load_parser(path.suffix)
     	if parser:
     		parser.parse(path, source, dest)
     	else:
