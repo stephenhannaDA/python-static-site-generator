@@ -9,38 +9,39 @@ class Content(Mapping):
 	@classmethod
 	def load(cls, string):
 		_, fm, content = cls.__regex.split(string, 2)
-		load(fm, Loader = FullLoader)
+		metadata = load(fm, Loader = FullLoader)
 		return cls(metadata, content)
 
-	def Content(metadata, content):
+	def __init__(self, metadata, content):
 		self.data = metadata
-		self.data += {"content":content}
+		self.data["content"] = content
 
 	@property
-	def body():
+	def body(self):
 		return self.data["content"]
 
 	@property
 	def type(self):
-		return self.data["type"] if self.data in type else None
+		return self.data["type"] if "type" in self.data else None
 
 	@type.setter
-	def type(self):
-		self.data["type"] = type()
+	def type(self, type):
+		self.data["type"] = type
 
 	def __getitem__(self, key):
 		return self.data[key]
 
 	def __iter__(self):
-		return self.data.iter__()
+		return self.data.__iter__()
 
 	def __len__(self):
 		return len(self.data)
 
 	def __repr__(self):
 		data = {}
+		for key, val in self.data.items():
+			if key != "content":
+				data[key] = value
 		return str(data)
 
-	for key, val in self.data.items():
-		if key != "content":
-			value = data[key]
+
